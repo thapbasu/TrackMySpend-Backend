@@ -10,12 +10,15 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+const allowedOrigin = "https://track-my-spend-frontend.vercel.app" || "http://localhost:3000";
+
 app.use(
-  cors({
-    origin: "*",
-    credentials: true, // If your frontend needs to send cookies or authorization headers
-  })
+    cors({
+        origin: allowedOrigin,
+        credentials: true,
+    })
 );
+
 
 // Connect to the database
 connectDB().catch((err) => {
